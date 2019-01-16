@@ -1,0 +1,112 @@
+html{
+	background-color: #F7FDF9;
+}
+
+body{
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;;
+}
+
+#mainHeader{
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    font-size: 25pt;
+    margin: 0;
+    padding-top: 33px;
+    padding-bottom: 33px;
+    box-shadow: 0 0 7px #555;
+    background-image: linear-gradient(to right, #215B8D, #279064);
+}
+
+#searchWrapper, #favouriteWrapper{
+	padding-left: 2%;
+	padding-right: 2%;
+}
+
+#searchWrapper{
+	background-color: white;
+	padding-top: 20px;
+	padding-bottom: 15px;
+}
+
+#favouriteWrapper h1{
+	font-size: 24pt;	
+	font-weight: bold;
+	color: #279064;
+}
+
+#searchBox{
+	display: flex;
+	margin-bottom: 20px;
+}
+
+#searchBox input[type='text']{
+	width: 95%;
+	font-size: 18pt;
+	margin-right: 1%;
+	padding: 0 1% 0 1%;
+}
+
+#searchBox input[type='text']:focus{
+	border-color: #279064;
+}
+
+
+#searchBox input[type='image']{
+	background-color: #279064;
+    padding: 8px;
+    box-shadow: 0 0 1px #555;
+    width: 35px;
+    height: 35px;
+}
+
+.item{
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.itemTitle{
+	width: 30%;
+	display: flex;
+}
+
+.itemTitle img{
+	height: fit-content;
+}
+
+.itemTitle p{
+	margin: 10px 0px 0px 13px;
+}
+    
+.itemDescription{
+	margin: 0;
+	width: 70%;
+	padding-top: 9px;
+}
+
+.itemDescription ul{
+	margin: 0;
+}
+
+.itemDescription > :not(ul){
+	padding-left: 22px;
+}
+
+.item ul li{
+	padding-bottom: 10px;
+}
+
+.itemTitle img{
+	height: 36px;
+    width: 36px;
+}
+
+.favBtn:hover{
+	background-image: url('../img/star-icon.svg');
+}
+
