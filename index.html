@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Toronto Waste Lookup</title>
+	<link rel='stylesheet' type='text/css' href='styles/main_theme.css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+	<h1 id='mainHeader'>Toronto Waste Lookup</h1>
+	<div id='searchWrapper'>
+		<div id='searchBox'>
+			<input type='text' name='searchInput' id='searchInput' onkeydown= 'performSearchWithEnter()' oninput='flushWhenEmpty()'>
+			<input type='image' name='searchBtn' id='searchBtn' src='img/search-icon.svg' onclick='performSearch()'>
+		</div>
+		<div id='searchList'></div>
+	</div>
+	<div id='favouriteWrapper'>
+		<h1>Favourites</h1>
+		<div id='favList'></div>
+	</div>
+	<script src="scripts/main.js"></script>
+</body>
+</html>
