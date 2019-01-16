@@ -105,8 +105,3 @@ body{
 	height: 36px;
     width: 36px;
 }
-
-.favBtn:hover{
-	background-image: url('../img/star-icon.svg');
-}
-
