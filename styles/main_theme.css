@@ -58,11 +58,11 @@ body{
 
 
 #searchBox input[type='image']{
-	background-color: #279064;
-    padding: 1px;
+    background-color: #279064;
+    padding: 4px;
     box-shadow: 0 0 1px #555;
     width: auto;
-    height: 55px;
+    height: 48px;
 }
 
 .item{
