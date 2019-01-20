@@ -24,6 +24,7 @@ function getDataFromAPI(){
 	    if (this.readyState === XMLHttpRequest.DONE) {
 	        if (this.status === 200) {
 	            storeTorontoWasteData(request.response);
+	            loadSavedItemsFromLocalStorage();
 	        } else {
 	        	console.log('Request status : %d (%s)', request.status, request.statusText);
 				appendItem("Error occured when fetching the Toronto Waste Lookup Data, please try later.");
@@ -109,9 +110,30 @@ function updateFavList(){
 	favList.innerHTML = "";
 	favItemsIndex.forEach(function(i){
 		let item = items[i];
+
 		appendFavourite(newItemHTML(item.title, HTMLEscape(descriptions[item.descriptionID]), i, true));
 		addFavItemListener();
 	});
+}
+
+// catches saved items from local storage
+function loadSavedItemsFromLocalStorage(){
+	let savedItems = localStorage.getItem('savedItems');
+
+	if(savedItems != null && savedItems != ""){
+		favItemsIndex = savedItems.split(',').map(x => parseInt(x));
+		updateFavList();
+	}
+}
+
+
+// stores into local storage the saved favourites
+function updateSavedItemsFromLocalStorage(newItem = false){
+	let savedItems = localStorage.getItem("savedItems");
+
+	if(savedItems != "" || savedItems != null || newItem){
+		localStorage.setItem("savedItems", favItemsIndex.join(','));
+	}
 }
 
 // -- Utils --
@@ -129,7 +151,7 @@ function HTMLEscape(str) {
 
 // -- Listeners --
 
-//User wants to add favourite
+//User wants to ADD favourite
 function addSearchedItemListener(){
 	var searchedItemNodes = document.getElementById('searchList').children;
 	for (var i = 0; i < searchedItemNodes.length; i++) {
@@ -139,13 +161,15 @@ function addSearchedItemListener(){
 				this.src = star_icon_path;
 				let id = this.getAttribute('id').slice(4);
 				favItemsIndex.push(parseInt(id));
+
+				updateSavedItemsFromLocalStorage(true);
 				updateFavList();
 			}
 		});
 	}
 }
 
-//User wants to remove favourite
+//User wants to REMOVE favourite
 function addFavItemListener(){
 	var searchedItemNodes = document.getElementById('favList').children;
 	for (var i = 0; i < searchedItemNodes.length; i++) {
@@ -153,6 +177,7 @@ function addFavItemListener(){
 		starIcon.addEventListener('click', function(){
 			let id = this.getAttribute('id').slice(4);
 			favItemsIndex = favItemsIndex.filter(x => x != parseInt(id));
+			updateSavedItemsFromLocalStorage();
 			updateSearchList();
 			updateFavList();
 		});
